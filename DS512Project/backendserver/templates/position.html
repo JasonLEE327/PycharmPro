@@ -1,0 +1,370 @@
+{#{% extends 'base.html' %}#}
+
+{% block content %}
+    <html>
+    <head>
+        <style type="text/css">
+            #data{
+                margin-left: 20%;
+                margin-right:15%;
+                width:90%;
+            }
+/*            #reset{
+                margin-left:23%;
+                width:20%;
+            }*/
+/*            #submit{
+                margin-left:23%;
+            }*/
+            #random{
+            }
+        </style>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title>CS512 Project</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="../static/fp_theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+        <!-- Custom styles for this template -->
+        <link href="../static/starter-template.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">CS512</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                  <li><a href="index">Home</a></li>
+                  <li class="active" ><a href="#">Position Predict</a></li>
+                  <li ><a href="MatchPredict">Match Predict</a></li>
+
+                <!--<li><a href="ShowOnline.html">Online View</a></li>-->
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+        <div class="jumbotron">
+          <div class="container" >
+            <h2>Player Position Prediction</h2>
+            <p>This is a demo of our player position prediction.</p>
+          </div>
+
+        </div>
+        <!-- what i need -->
+        <div class="container">
+             <div class="container-overflow-wrap">
+			    <div class="container">
+			      <!-- What I really need -->
+			      <div class="row row-padded row-bordered row-centered">
+			        <div class="col-sm-12">
+			          <div class="row">
+			            <div class="col-md-4 m-b-lg">
+			              <div class="panel panel-default panel-profile m-b-0">
+			                <div class="panel-heading" style="background-image: url(../static/barcelona2.jpg);"></div>
+			                <div class="panel-body text-center">
+			                  <img class="panel-profile-img" src="http://img3.yxlady.com/yl/UploadFiles_5361/20151124/20151124124508431.jpg">
+			                  <h5 class="panel-title">Lionel Messi</h5>
+			                  <p class="m-b">Vice Captain of FC Barcelona</p>
+                              <button id="btn_Messi" type="button" class="btn btn-primary-outline btn-sm m-b">Load Messi's Attribute</button>
+			                </div>
+			              </div>
+			            </div>
+			            <div class="col-md-4 m-b-lg">
+			              <div class="panel panel-default panel-profile m-b-0">
+			                <div class="panel-heading" style="background-image: url(../static/barcelona2.jpg);"></div>
+			                <div class="panel-body text-center">
+			                  <img class="panel-profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5ppEUiW1fhaJI7_1IRHGSt_XPgyLXC-dn2NzX-55AINlfAd8Sog">
+			                  <h5 class="panel-title">Andrés Iniesta</h5>
+			                  <p class="m-b">Captain of FC Barcelona</p>
+			                  <button id="btn_Iniesta" type="button" class="btn btn-primary-outline btn-sm m-b">Load Iniesta's Attribute</button>
+			                </div>
+			              </div>
+			            </div>
+			            <div class="col-md-4 m-b-lg">
+			              <div class="panel panel-default panel-profile m-b-0">
+			                <div class="panel-heading" style="background-image: url(../static/madrid2.jpg);"></div>
+			                <div class="panel-body text-center">
+			                  <img class="panel-profile-img" src="../static/ramos.jpg">
+			                  <h5 class="panel-title">Sergio Ramos</h5>
+			                  <p class="m-b">Captain of Real Madrid C.F.</p>
+			                  <button id="btn_Ramos" type="button" class="btn btn-primary-outline btn-sm m-b">Load Ramos's Attribute</button>
+			                </div>
+			              </div>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+        </div>
+
+
+        <div class="container" id="data">
+
+            <p>(Tips:in these forms, you can only input number between 0-100)</p>
+            <form>
+                {% for attribute in attributes %}
+                    <div class="row" >
+                        {% for item in attribute %}
+                            <div class="col-xs-2">
+                                <label for={{ item }}>{{ item }}</label>
+                                <input type="text" class="form-control" id={{ item }} placeholder="0">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <br>
+            </form>
+        </div>
+
+        <div class="panel-body text-center">
+            <button type="random" class="btn btn-primary-outline btn-sm m-b" id="random">Random</button>
+            <button type="reset" class="btn btn-primary-outline btn-sm m-b" id="reset">Reset</button>
+            <button type="submit" class="btn btn-primary-outline btn-sm m-b" id="submit" data-toggle="modal" data-target="#myModal">Submit</button>
+        </div>
+        
+        <div class="modal fade" id="result_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_Label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="result_modal_Label">Predict Result</h4>
+                    </div>
+                <div class="modal-body">
+                    <h3 align="center" id="line1"></h3>
+{#                    <h3 align="center" id="line2"></h3>#}
+{#                    <h3 align="center" id="line3"></h3>#}
+{#                    <h3 align="center" id="line4"></h3>#}
+{#                    <h3 align="center" id="line5"></h3>#}
+
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_change_team2">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="error_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_Label">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="result_modal_Label">Error!</h4>
+                    </div>
+                <div class="modal-body">
+                    <h3 align="center" id="line2"></h3>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_change_team2">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+	    <div class="container">
+	      <hr>
+
+	      <footer>
+	        <p>&copy; 2017 CS512</p>
+	      </footer>
+	    </div> <!-- /container -->
+
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+        </script>
+
+        <script>
+            $(document).ready(function(){
+              $("#btn_Messi").click(function(){
+                var messi_attr = [48,85,89,97,95,90,71,88,74,85,85,88,87,22,13,26,28,59,90,92,90,95,73,95,95,96,68,87,93]
+                var i = 0
+                $("input").each(function(){
+                  $(this).val(messi_attr[i])
+                  i = i + 1
+                });
+              });
+              $("#btn_Iniesta").click(function(){
+                var Iniesta_attr = [58,77,80,90,70,70,54,71,71,65,74,92,86,66,57,56,57,58,94,72,79,88,58,84,94,89,52,71,84]
+                var i = 0
+                $("input").each(function(){
+                  $(this).val(Iniesta_attr[i])
+                  i = i + 1
+                });
+              });
+              $("#btn_Ramos").click(function(){
+                var Ramos_attr = [84,66,73,61,60,67,91,55,68,78,66,78,72,88,86,91,89,81,63,75,79,85,84,60,84,80,93,77,52]
+                var i = 0
+                $("input").each(function(){
+                  $(this).val(Ramos_attr[i])
+                  i = i + 1
+                });
+              });
+              $("#random").click(function(){
+                var random_attr = new Array()
+                for (var i=0; i<29; i++){
+                    random_attr[i] = Math.floor((Math.random() * 100) + 1);
+                }
+                var i = 0
+                $("input").each(function(){
+                  $(this).val(random_attr[i])
+                  i = i + 1
+                });
+              });
+              $("#reset").click(function(){
+                var reset_attr = new Array()
+                for (var i=0; i<29; i++){
+                    reset_attr[i] = "";
+                }
+                var i = 0
+                $("input").each(function(){
+                  $(this).val(reset_attr[i])
+                  i = i + 1
+                });
+              });
+        });
+        </script>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script
+                src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                crossorigin="anonymous"></script>
+        <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+
+        <script
+                  src="https://code.jquery.com/jquery-1.12.4.min.js"
+                  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                  crossorigin="anonymous"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+        <!-- Latest compiled and minified Locales -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+        <script type="text/javascript" src="http://malsup.github.io/min/jquery.blockUI.min.js"></script>
+
+
+
+        <script type="text/javascript">
+            $(function () {
+                var oButtonInit = new ButtonInit();
+                oButtonInit.Init();
+            });
+        </script>
+
+        <script type="text/javascript">
+            var ButtonInit = function () {
+                var oInit = new Object();
+                var postdata = {};
+                oInit.Init = function () {
+                    //初始化页面上面的按钮事件
+{#                    $(document).ajaxStop($.unblockUI);#}
+                    $(document).ready(function() {
+                        $("#submit").click(function () {
+                            $.blockUI({message: 'we are processing your data...'});
+                            $.ajax({
+                                type: 'POST',
+                                url: '/backend/get_position',
+                                data: {
+                                    "attributes": [
+                                        document.getElementById("Aggression").value,
+                                        document.getElementById("Crossing").value,
+                                        document.getElementById("Curve").value,
+                                        document.getElementById("Dribbling").value,
+                                        document.getElementById("Finishing").value,
+                                        document.getElementById("Free_kick_accuracy").value,
+                                        document.getElementById("Heading_accuracy").value,
+                                        document.getElementById("Long_shots").value,
+                                        document.getElementById("Penalties").value,
+                                        document.getElementById("Shot_power").value,
+                                        document.getElementById("Volleys").value,
+                                        document.getElementById("Short_passing").value,
+                                        document.getElementById("Long_passing").value,
+                                        document.getElementById("Interceptions").value,
+                                        document.getElementById("Marking").value,
+                                        document.getElementById("Sliding_tackle").value,
+                                        document.getElementById("Standing_tackle").value,
+                                        document.getElementById("Strength").value,
+                                        document.getElementById("Vision").value,
+                                        document.getElementById("Acceleration").value,
+                                        document.getElementById("Agility").value,
+                                        document.getElementById("Reactions").value,
+                                        document.getElementById("Stamina").value,
+                                        document.getElementById("Balance").value,
+                                        document.getElementById("Ball_control").value,
+                                        document.getElementById("Composure").value,
+                                        document.getElementById("Jumping").value,
+                                        document.getElementById("Sprint_speed").value,
+                                        document.getElementById("Positioning").value
+                                    ]
+                                },
+                                success: function (data) {
+                                    document.getElementById("line1").innerText = "The most possible position for this player is:\n\n"
+                                        + data ;
+                                    $.unblockUI();
+                                    $("#result_modal").modal("show");
+
+                                },
+                                error: function (data) {
+                                    document.getElementById("line2").innerText = "Something is wrong with your data! Please pay attention to the tip!";
+                                    $.unblockUI();
+                                    $("#error_modal").modal("show");
+                                },
+                                dataType: "text"
+                            });
+                        });
+                    });
+{#                    $("#reset").click(function() {#}
+{#                        document.getElementsById("Form").reset();#}
+{#                    });#}
+                };
+                return oInit
+            };
+        </script>
+
+
+
+    </body>
+    </html>
+
+
+{% endblock content %}
+
+

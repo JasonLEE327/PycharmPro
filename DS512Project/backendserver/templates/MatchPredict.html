@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>CS512 Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="../static/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">CS512</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="index">Home</a></li>
+              <li><a href="PositionPredict">Position Predict</a></li>
+              <li class="active"><a href="#">Match Predict</a></li>
+
+            <!--<li><a href="ShowOnline.html">Online View</a></li>-->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Match Predict</h2>
+        <p>Demo for presentation</p>
+        <!--<p>-->
+          <!--<a class="btn btn-primary btn-lg" id="btn_refresh" role="button">show_predict</a>-->
+          <!--<a class="btn btn-primary btn-lg" id="btn_logoff" role="button" onclick="window.location='/logout'">test</a>-->
+          <!--<a class="btn btn-primary btn-lg" id="btn_toOld" role="button" onclick="window.location='/indexOld.html'">test</a>-->
+        <!--</p>-->
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns-->
+      <div class="row" style="background:url(../static/playground.jpg);background-size:cover; ">
+        <div class="col-md-6">
+          <h3 style="color:#FFFFFF" align="center">Home Team</h3>
+          <p>
+            <label class="control-label col-md-6" align="center" style="color:#FFFFFF;font-size:30px" >Club:</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" id="team1_name">
+                  <option>Real Madrid</option><!--could use id name pair here if had time-->
+                  <option>Barcelona</option>
+                  <option>Atlético de Madrid</option>
+                </select>
+              </div>
+            </div>
+          </p>
+          <p align="center"><a class="btn btn-default" role="button" id="btn_apply_club1">Apply</a></p>
+          <p>
+            <label class="control-label col-md-6" align="center" style="color:#FFFFFF;font-size:30px">Formation:</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" id="team1_formation">
+                  <option>4-3-3</option>
+                  <option>4-5-1</option>
+                  <option>4-4-2</option>
+                </select>
+              </div>
+            </div>
+          </p>
+          <!--# Real Madrid starting XI: Keylor Navas; Achraf, Varane, Ramos, Marcelo;-->
+          <!--#  Modrić, Kroos, Isco; Bale,  Benzema, Ronaldo.-->
+          <h3 style="color:#FFFFFF" align="center" id="team1_player1">Wing Forward: Ronaldo
+            <!--<img class="rounded-circle" src="https://cdn.sofifa.org/48/18/players/20801.png" height="30" width="30" >-->
+          </h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player2">Centre Forward: Benzema
+            <!--<img class="rounded-circle" src="https://cdn.sofifa.org/48/18/players/165153.png" height="30" width="30" >-->
+          </h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player3">Wing Forward: Bale</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player4">Side Mid-Fielder: Isco</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player5">Centre Mid-Fielder: Kroos</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player6">Side Mid-Fielder: Modrić</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player7">Side Back: Marcelo</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player8">Centre Back Stopper: Ramos</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player9">Centre Back Stopper: Varane</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player10">Side Back: Achraf</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team1_player11">Goalkeeper: Keylor Navas</h3>
+          <!--<p> .</p>-->
+          <p align="center">
+            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#set_team1" id="btn_add1">View details &raquo;</a>
+          </p>
+          <!--<p> .</p>-->
+        </div>
+        <div class="col-md-6">
+          <h3 style="color:#FFFFFF" align="center">Away Team</h3>
+          <p>
+            <label class="control-label col-md-6" align="center" style="color:#FFFFFF;font-size:30px" >Club:</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" id="team2_name">
+                  <option>Real Madrid</option><!--could use id name pair here if had time-->
+                  <option>Barcelona</option>
+                  <option>Atlético de Madrid</option>
+                </select>
+              </div>
+            </div>
+          </p>
+          <p align="center"><a class="btn btn-default" role="button" id="btn_apply_club2">Apply</a></p>
+          <p>
+            <label class="control-label col-md-6" align="center" style="color:#FFFFFF;font-size:30px">Formation:</label>
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" id="team2_formation">
+                  <option>4-3-3</option>
+                  <option>4-5-1</option>
+                  <option>4-4-2</option>
+                </select>
+              </div>
+            </div>
+          </p>
+          <!--# Real Madrid starting XI: Keylor Navas; Achraf, Varane, Ramos, Marcelo;-->
+          <!--#  Modrić, Kroos, Isco; Bale,  Benzema, Ronaldo.-->
+          <h3 style="color:#FFFFFF" align="center" id="team2_player1">Wing Forward: Ronaldo
+            <!--<img class="rounded-circle" src="https://cdn.sofifa.org/48/18/players/20801.png" height="30" width="30" >-->
+          </h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player2">Centre Forward: Benzema
+            <!--<img class="rounded-circle" src="https://cdn.sofifa.org/48/18/players/165153.png" height="30" width="30" >-->
+          </h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player3">Wing Forward: Bale</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player4">Side Mid-Fielder: Isco</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player5">Centre Mid-Fielder: Kroos</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player6">Side Mid-Fielder: Modrić</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player7">Side Back: Marcelo</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player8">Centre Back Stopper: Ramos</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player9">Centre Back Stopper: Varane</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player10">Side Back: Achraf</h3>
+          <h3 style="color:#FFFFFF" align="center" id="team2_player11">Goalkeeper: Keylor Navas</h3>
+          <!--<p> .</p>-->
+          <p align="center">
+            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#set_team2" id="btn_add2">View details &raquo;</a>
+          </p>
+       </div>
+        <!--<div class="col-md-4">-->
+          <!--<h2>Heading</h2>-->
+          <!--<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>-->
+          <!--<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>-->
+        <!--</div>-->
+      </div>
+        <br />
+      <button type="button" class="btn btn-danger btn-lg btn-block" id="btn_predict">Predict the Match!</button>
+      <hr>
+
+      <footer>
+        <p>&copy; 2017 CS512</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <!-- Modal -->
+	<div class="modal fade" id="set_team1" tabindex="-1" role="dialog" aria-labelledby="set_team1_Label">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="set_team1_Label">Change Player</h4>
+		  </div>
+		  <div class="modal-body">
+			<form id="upload1" method="post" action="#" enctype="multipart/form-data" onkeydown="if(event.keyCode==13)return false;">
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon1">Wing Forward: </span>
+					<input type="text" class="form-control" name="player1" value="" aria-describedby="add_form1_addon1" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon2">Centre Forward: </span>
+					<input type="text" class="form-control" name="player2" value="" aria-describedby="add_form1_addon2" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon3">Wing Forward: </span>
+					<input type="text" class="form-control" name="player3" value="" aria-describedby="add_form1_addon3" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon4">Side Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player4" value="" aria-describedby="add_form1_addon4" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon5">Centre Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player5" value="" aria-describedby="add_form1_addon5" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon6">Side Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player6" value="" aria-describedby="add_form1_addon6" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon7">Side Back: </span>
+					<input type="text" class="form-control" name="player7" value="" aria-describedby="add_form1_addon7" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon8">Centre Back Stopper: </span>
+					<input type="text" class="form-control" name="player8" value="" aria-describedby="add_form1_addon8" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon9">Centre Back Stopper: </span>
+					<input type="text" class="form-control" name="player9" value="" aria-describedby="add_form1_addon9" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon10">Side Back: </span>
+					<input type="text" class="form-control" name="player10" value="" aria-describedby="add_form1_addon10" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form1_addon11">Goalkeeper: </span>
+					<input type="text" class="form-control" name="player11" value="" aria-describedby="add_form1_addon11" />
+				</div>
+				</div>
+			</form>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_change_team1">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- Modal 2-->
+	<div class="modal fade" id="set_team2" tabindex="-1" role="dialog" aria-labelledby="set_team2_Label">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="set_team2_Label">Change Player</h4>
+		  </div>
+		  <div class="modal-body">
+			<form id="upload2"  method="post" action="#" enctype="multipart/form-data" onkeydown="if(event.keyCode==13)return false;">
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon1">Wing Forward: </span>
+					<input type="text" class="form-control" name="player1" value="" aria-describedby="add_form2_addon1" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon2">Centre Forward: </span>
+					<input type="text" class="form-control" name="player2" value="" aria-describedby="add_form2_addon2" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon3">Wing Forward: </span>
+					<input type="text" class="form-control" name="player3" value="" aria-describedby="add_form2_addon3" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon4">Side Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player4" value="" aria-describedby="add_form2_addon4" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon5">Centre Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player5" value="" aria-describedby="add_form2_addon5" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon6">Side Mid-Fielder: </span>
+					<input type="text" class="form-control" name="player6" value="" aria-describedby="add_form2_addon6" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon7">Side Back: </span>
+					<input type="text" class="form-control" name="player7" value="" aria-describedby="add_form2_addon7" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon8">Centre Back Stopper: </span>
+					<input type="text" class="form-control" name="player8" value="" aria-describedby="add_form2_addon8" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon9">Centre Back Stopper: </span>
+					<input type="text" class="form-control" name="player9" value="" aria-describedby="add_form2_addon9" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon10">Side Back: </span>
+					<input type="text" class="form-control" name="player10" value="" aria-describedby="add_form2_addon10" />
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" id="add_form2_addon11">Goalkeeper: </span>
+					<input type="text" class="form-control" name="player11" value="" aria-describedby="add_form2_addon11" />
+				</div>
+				</div>
+			</form>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_change_team2">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+	<!-- Modal 2-->
+	<div class="modal fade" id="result_modal" tabindex="-1" role="dialog" aria-labelledby="result_modal_Label">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="result_modal_Label">Predict Result</h4>
+		  </div>
+		  <div class="modal-body">
+			<h3 align="center" id="line1"></h3>
+			<h3 align="center" id="line2"></h3>
+			<h3 align="center" id="line3"></h3>
+			<h3 align="center" id="line4"></h3>
+			<h3 align="center" id="line5"></h3>
+			  <!--  Team %s has more chance to win. The win rate is %f.
+			  However, there is still %f chance that come to a tie.
+			  And %f chance for team %s to win-->
+			  <!--  The over all expectation of team1's score is %f.
+			  For team2 is %f .-->
+
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<!--<button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_change_team2">Save changes</button>-->
+		  </div>
+		</div>
+	  </div>
+	</div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+
+    <script
+              src="https://code.jquery.com/jquery-1.12.4.min.js"
+              integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+              crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+    <script type="text/javascript">
+	    $(function () {
+//
+//	        //1.初始化Table
+//	        var oTable = new TableInit();
+//	        oTable.Init();
+
+	        //2.初始化Button的点击事件
+	        var oButtonInit = new ButtonInit();
+	        oButtonInit.Init();
+
+//	        //3.表单初始化
+//	        var oFormInit = new FormInit();
+//	        oFormInit.Init();
+
+	    });
+
+    </script>
+    <script type="text/javascript">
+	    var ButtonInit = function () {
+	        var oInit = new Object();
+	        var postdata = {};
+	        var bs = ["Wing Forward: Deulofeu", "Centre Forward: Suarez", "Wing Forward: Messi", "Side Mid-Fielder: Iniesta",
+            "Centre Mid-Fielder: Rakitic", "Side Mid-Fielder: Busquets", "Side Back: Alba", "Centre Back Stopper: Umtiti",
+            "Centre Back Stopper: Pique", "Side Back: Vidal", "Goalkeeper: Ter Stegen"];
+	        var rm = ["Wing Forward: Ronaldo", "Centre Forward: Benzema", "Wing Forward: Bale", "Side Mid-Fielder: Isco",
+            "Centre Mid-Fielder: Kroos", "Side Mid-Fielder: Modrić", "Side Back: Marcelo", "Centre Back Stopper: Ramos",
+            "Centre Back Stopper: Varane", "Side Back: Achraf", "Goalkeeper: Keylor Navas"];
+	        var am = ["Wing Forward: Torres", "Centre Forward: Griezmann", "Wing Forward: Carrasco", "Side Mid-Fielder: Saul",
+            "Centre Mid-Fielder: Gabi", "Side Mid-Fielder: Koke", "Side Back: Filipe Luis", "Centre Back Stopper: Savic",
+            "Centre Back Stopper: Godin", "Side Back: Juanfran", "Goalkeeper: Oblak"];
+            //# Atletico de Madrid starting XI: Oblak; Juanfran, Godin, Savic, Filipe Luis;
+            //# Koke, Gabi, Saul; Carrasco, Griezmann, Torres;
+
+	        oInit.Init = function () {
+	            //初始化页面上面的按钮事件
+
+
+	        	$("#btn_add1").click(function () {
+//                    console.warn(document.getElementById("team1_player1"));
+
+                    if ($('#team1_formation option:selected').index()==0){
+                        //433
+                        document.getElementById("add_form1_addon1").innerText = "Wing Forward:";
+                        document.getElementById("add_form1_addon2").innerText = "Centre Forward:";
+                        document.getElementById("add_form1_addon3").innerText = "Wing Forward:";
+                        document.getElementById("add_form1_addon4").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form1_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon10").innerText = "Side Back:";
+
+                    }else if($('#team1_formation option:selected').index()==1){
+                        //451
+                        document.getElementById("add_form1_addon1").innerText = "Centre Forward:";
+                        document.getElementById("add_form1_addon2").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon3").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon4").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form1_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon10").innerText = "Side Back:";
+
+                    }else if($('#team1_formation option:selected').index()==2){
+                        //442
+                        document.getElementById("add_form1_addon1").innerText = "Centre Forward:";
+                        document.getElementById("add_form1_addon2").innerText = "Centre Forward:";
+                        document.getElementById("add_form1_addon3").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon4").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form1_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form1_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form1_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form1_addon10").innerText = "Side Back:";
+
+                    }else{
+                        return;//add new index here
+                    }
+
+	        		for(var i=0;i<11;i++){
+	        		    str_id = "team1_player" + (i + 1);
+	        		    current_player = document.getElementById(str_id).innerText;
+	        		    current_player = current_player.split(":");
+	        		    str_id = "player" + (i + 1);
+	        		    document.getElementById("upload1").elements[str_id].value = $.trim(current_player[1]);
+	        		    str_id = "add_form1_addon" + (i + 1);
+//                        document.getElementById(str_id).innerText = current_player[0];
+
+	        		}
+	        		//console.warn(document.getElementById("upload").elements["channelId"]);
+	            });
+
+	        	$("#btn_add2").click(function () {
+//                    console.warn(document.getElementById("team1_player1"));
+
+                    if ($('#team2_formation option:selected').index()==0){
+                        //433
+                        document.getElementById("add_form2_addon1").innerText = "Wing Forward:";
+                        document.getElementById("add_form2_addon2").innerText = "Centre Forward:";
+                        document.getElementById("add_form2_addon3").innerText = "Wing Forward:";
+                        document.getElementById("add_form2_addon4").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form2_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon10").innerText = "Side Back:";
+
+                    }else if($('#team2_formation option:selected').index()==1){
+                        //451
+                        document.getElementById("add_form2_addon1").innerText = "Centre Forward:";
+                        document.getElementById("add_form2_addon2").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon3").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon4").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form2_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon10").innerText = "Side Back:";
+
+                    }else if($('#team2_formation option:selected').index()==2){
+                        //442
+                        document.getElementById("add_form2_addon1").innerText = "Centre Forward:";
+                        document.getElementById("add_form2_addon2").innerText = "Centre Forward:";
+                        document.getElementById("add_form2_addon3").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon4").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon5").innerText = "Centre Mid-Fielder:";
+                        document.getElementById("add_form2_addon6").innerText = "Side Mid-Fielder:";
+                        document.getElementById("add_form2_addon7").innerText = "Side Back:";
+                        document.getElementById("add_form2_addon8").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon9").innerText = "Centre Back Stopper:";
+                        document.getElementById("add_form2_addon10").innerText = "Side Back:";
+
+                    }else{
+                        return;//add new index here
+                    }
+
+	        		for(var i=0;i<11;i++){
+	        		    str_id = "team2_player" + (i + 1);
+	        		    current_player = document.getElementById(str_id).innerText;
+	        		    current_player = current_player.split(":");
+	        		    str_id = "player" + (i + 1);
+	        		    document.getElementById("upload2").elements[str_id].value = $.trim(current_player[1]);
+	        		    str_id = "add_form2_addon" + (i + 1);
+//                        document.getElementById(str_id).innerText = current_player[0];
+
+	        		}
+	        		//console.warn(document.getElementById("upload").elements["channelId"]);
+	            });
+
+	        	$("#btn_change_team1").click(function () {
+                    for(var i=0;i<11;i++){
+                        new_data = "";
+                        str_id = "add_form1_addon" + (i + 1);
+                        new_data += document.getElementById(str_id).innerText;
+	        		    str_id = "player" + (i + 1);
+	        		    new_data = new_data + " " +document.getElementById("upload1").elements[str_id].value;
+                        str_id = "team1_player" + (i + 1);
+	        		    document.getElementById(str_id).innerText = new_data;
+//                         = current_player[0];
+
+	        		}
+                });
+
+	        	$("#btn_change_team2").click(function () {
+                    for(var i=0;i<11;i++){
+                        new_data = "";
+                        str_id = "add_form2_addon" + (i + 1);
+                        new_data += document.getElementById(str_id).innerText;
+	        		    str_id = "player" + (i + 1);
+	        		    new_data = new_data + " " +document.getElementById("upload2").elements[str_id].value;
+                        str_id = "team1_player" + (i + 1);
+	        		    document.getElementById(str_id).innerText = new_data;
+//                         = current_player[0];
+
+	        		}
+                });
+
+	        	$("#btn_apply_club1").click(function () {
+	        	    if ($('#team1_name option:selected').index()==0){
+	        	        for(var i=0;i<11;i++){
+                            str_id = "team1_player" + (i + 1);
+                            document.getElementById(str_id).innerText = rm[i];
+                        }
+                    }else if($('#team1_name option:selected').index()==1){
+	        	        for(var i=0;i<11;i++){
+                            str_id = "team1_player" + (i + 1);
+                            document.getElementById(str_id).innerText = bs[i];
+                        }
+
+                    }else if($('#team1_name option:selected').index()==2){
+                        for(var i=0;i<11;i++){
+                            str_id = "team1_player" + (i + 1);
+                            document.getElementById(str_id).innerText = am[i];
+                        }
+                    }else{
+                        return;//add new index here
+                    }
+
+                });
+
+	        	$("#btn_apply_club2").click(function () {
+	        	    if ($('#team2_name option:selected').index()==0){
+	        	        for(var i=0;i<11;i++){
+                            str_id = "team2_player" + (i + 1);
+                            document.getElementById(str_id).innerText = rm[i];
+                        }
+                    }else if($('#team2_name option:selected').index()==1){
+	        	        for(var i=0;i<11;i++){
+                            str_id = "team2_player" + (i + 1);
+                            document.getElementById(str_id).innerText = bs[i];
+                        }
+
+                    }else if($('#team2_name option:selected').index()==2){
+                        for(var i=0;i<11;i++){
+                            str_id = "team2_player" + (i + 1);
+                            document.getElementById(str_id).innerText = am[i];
+                        }
+                    }else{
+                        return;//add new index here
+                    }
+
+                });
+
+	        	$("#btn_predict").click(function () {
+	        	    var term1 = [];
+	        	    var term2 = [];
+	        	    var formation1 = [];
+	        	    var formation2 = [];
+	        	    var c1 = [94, 86, 89, 90, 85, 89, 87, 90, 85, 84, 85];
+	        	    var c2 = [82, 92, 93, 87, 87, 86, 85, 83, 87, 76, 85];
+	        	    var c3 = [81, 88, 85, 82, 81, 84, 85, 82, 88, 83, 88];
+	        	    var f1 = [4, 3, 3];
+	        	    var f2 = [4, 5, 1];
+	        	    var f3 = [4, 4, 2];
+	        	    if ($('#team1_name option:selected').index()==0){
+						term1 = c1;
+                    }else if($('#team1_name option:selected').index()==1){
+	        	        term1 = c2;
+                    }else if($('#team1_name option:selected').index()==2){
+                        term1 = c3;
+                    }else{
+                        return;//add new index here
+                    }
+                    if ($('#team2_name option:selected').index()==0){
+						term2 = c1;
+                    }else if($('#team2_name option:selected').index()==1){
+	        	        term2 = c2;
+                    }else if($('#team2_name option:selected').index()==2){
+                        term2 = c3;
+                    }else{
+                        return;//add new index here
+                    }
+                    if ($('#team1_formation option:selected').index()==0){
+						formation1 = f1;
+                    }else if($('#team1_formation option:selected').index()==1){
+						formation1 = f2;
+                    }else if($('#team1_formation option:selected').index()==2){
+						formation1 = f3;
+                    }else{
+                        return;//add new index here
+                    }
+                    if ($('#team2_formation option:selected').index()==0){
+						formation2 = f1;
+                    }else if($('#team2_formation option:selected').index()==1){
+                        formation2 = f2;
+                    }else if($('#team2_formation option:selected').index()==2){
+                        formation2 = f3;
+                    }else{
+                        return;//add new index here
+                    }
+
+	        		$.ajax({
+	        			  type: 'POST',
+	        			  url: '/backend/get_predict',
+	        			  data: {
+                              "term1" : term1,
+                              "term2" : term2,
+                              "formation1" : formation1,
+                              "formation2" : formation2},
+	        			  success: function (data) {
+	        			      console.log(data);
+	        			      //alert(data.t1win);
+	        			      var t1win = data.t1win;
+	        			      var t2win = data.t2win;
+	        			      var draw = data.draw;
+	        			      var expect1 = data.expect1;
+	        			      var expect2 = data.expect2;
+							  var v1 ="";
+							  var v2 =0.1;
+							  var v3 =0.1;
+							  var v4 ="";
+	        			      if (t1win > t2win){
+	        			          if ($('#team1_name option:selected').index()==0){
+									v1 = "Real Madrid";
+
+								}else if($('#team1_name option:selected').index()==1){
+									v1 = "Barcelona";
+								}else if($('#team1_name option:selected').index()==2){
+									v1 = "Atlético de Madrid";
+								}else{
+									return;//add new index here
+								}
+								if ($('#team2_name option:selected').index()==0){
+									  v4 = "Real Madrid";
+								}else if($('#team2_name option:selected').index()==1){
+									v4 = "Barcelona";
+								}else if($('#team2_name option:selected').index()==2){
+									v4 = "Atlético de Madrid";
+								}else{
+									return;//add new index here
+								}
+								v2 = t1win;
+								v3 = t2win;
+
+
+							  }
+							  else{
+								  if ($('#team2_name option:selected').index()==0){
+									  v1 = "Real Madrid";
+								}else if($('#team2_name option:selected').index()==1){
+									v1 = "Barcelona";
+								}else if($('#team2_name option:selected').index()==2){
+									v1 = "Atlético de Madrid";
+								}else{
+									return;//add new index here
+								}
+								if ($('#team1_name option:selected').index()==0){
+									v4 = "Real Madrid";
+
+								}else if($('#team1_name option:selected').index()==1){
+									v4 = "Barcelona";
+								}else if($('#team1_name option:selected').index()==2){
+									v4 = "Atlético de Madrid";
+								}else{
+									return;//add new index here
+								}
+								v2 = t2win;
+								v3 = t1win;
+							  }
+
+	        			      document.getElementById("line1").innerText = "Team "+v1+
+								  " has more chance to win. The win rate is "+parseFloat(v2*100).toFixed(2)+"%.";
+	        			      document.getElementById("line2").innerText = "However, there is still "+parseFloat(draw*100).toFixed(2)
+								  +"% chance that come to a tie.";
+	        			      document.getElementById("line3").innerText = "And "+parseFloat(v3*100).toFixed(2)
+								  +"% chance for team "+v4+" to win.";
+	        			      document.getElementById("line4").innerText = "The over all expectation of team1's score is "+
+								  expect1+".";
+	        			      document.getElementById("line5").innerText = "For team2 is "+expect2+".";
+	        			      $("#result_modal").modal("show");
+//<p id="line1"></p>
+//			<p id="line2"></p>
+//			<p id="line3"></p>
+//			<p id="line4"></p>
+//			<p id="line5"></p>
+//			  <!--  Team %s has more chance to win. The win rate is %f.
+//			  However, there is still %f chance that come to a tie.
+//			  And %f chance for team %s to win-->
+//			  <!--  The over all expectation of team1's score is %f.
+//			  For team2 is %f .-->
+
+	        			  },
+	        			  error:function (data) {
+	        				  alert(data);
+	        			  },
+	        			  dataType: "json"
+	        			});
+	            });
+
+	        };
+
+	        return oInit;
+	    };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <html>
+    <head>
+        <style type="text/css">
+
+            form{
+                margin-left: 25%;
+                margin-right:15%;
+                width: 70%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+             <p>this part....</p>
+        </div>
+        <br>
+
+
+        {% for i in range(3) %}
+            <br>
+        {% endfor %}
+
+
+        <div class="container_1">
+            <form role="form" id="Form">
+                {% for attribute in attributes %}
+                    <div class="row" >
+                        {% for item in attribute %}
+                            <div class="col-xs-2" >
+                                <label for={{item}}>{{item}}</label>
+                                <input type="text" class="form-control" id={{item}} placeholder="0">
+
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+
+        <div class="container_2" align="center">
+            <!-- 按钮触发模态框 -->
+
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="submit">
+                submit
+            </button>
+
+            <!-- 模态框（Modal） -->
+            <!--
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Position:
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            xxxx
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            $(function () { $('#myModal').modal({
+                keyboard: true
+            })});
+            </script>-->
+        </div>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script
+                src="https://code.jquery.com/jquery-1.12.4.min.js"
+                integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                crossorigin="anonymous"></script>
+        <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+
+        <script
+                  src="https://code.jquery.com/jquery-1.12.4.min.js"
+                  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+                  crossorigin="anonymous"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+        <!-- Latest compiled and minified Locales -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+        <script type="text/javascript">
+            $(function () {
+    //
+    //	        //1.初始化Table
+    //	        var oTable = new TableInit();
+    //	        oTable.Init();
+                //2.初始化Button的点击事件
+                var oButtonInit = new ButtonInit();
+                oButtonInit.Init();
+    //	        //3.表单初始化
+    //	        var oFormInit = new FormInit();
+    //	        oFormInit.Init();
+            });
+        </script>
+
+        <script type="text/javascript">
+            var ButtonInit = function () {
+                var oInit = new Object();
+                var postdata = {};
+                oInit.Init = function () {
+                    //初始化页面上面的按钮事件
+                    $("#submit").click(function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/backend/get_position',
+                            data: {
+                                "attributes": [
+
+                                    document.getElementById("Aggression").value,
+                                    document.getElementById("Crossing").value,
+                                    document.getElementById("Curve").value,
+                                    document.getElementById("Dribbling").value,
+                                    document.getElementById("Finishing").value,
+                                    document.getElementById("Free_kick_accuracy").value,
+                                    document.getElementById("Heading_accuracy").value,
+                                    document.getElementById("Long_shots").value,
+                                    document.getElementById("Penalties").value,
+                                    document.getElementById("Shot_power").value,
+                                    document.getElementById("Volleys").value,
+                                    document.getElementById("Short_passing").value,
+                                    document.getElementById("Long_passing").value,
+                                    document.getElementById("Interceptions").value,
+                                    document.getElementById("Marking").value,
+                                    document.getElementById("Sliding_tackle").value,
+                                    document.getElementById("Standing_tackle").value,
+                                    document.getElementById("Strength").value,
+                                    document.getElementById("Vision").value,
+                                    document.getElementById("Acceleration").value,
+                                    document.getElementById("Agility").value,
+                                    document.getElementById("Reactions").value,
+                                    document.getElementById("Stamina").value,
+                                    document.getElementById("Balance").value,
+                                    document.getElementById("Ball_control").value,
+                                    document.getElementById("Composure").value,
+                                    document.getElementById("Jumping").value,
+                                    document.getElementById("Sprint_speed").value,
+                                    document.getElementById("Positioning").value
+                                ]
+                            },
+                            success: function (data) {
+                                alert(data)
+                            },
+                            error: function (data) {
+                                alert(data)
+                            },
+
+                            dataType: "text"
+                        });
+                    });
+                };
+                return oInit
+            };
+
+
+        </script>
+
+    </body>
+    </html>
+
+
+{% endblock content %}
+
+

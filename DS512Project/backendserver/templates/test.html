@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>CS512 Project</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="../static/starter-template.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">CS512</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="ChannelList.html">Channel List</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change Order<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                	<li class="dropdown-header">List Order</li>
+	                <li><a href="OrderListLevel1.html">一级页面顺序</a></li>
+	                <li><a href="OrderListLevel2.html">二级页面顺序</a></li>
+	                <li role="separator" class="divider"></li>
+	                <li class="dropdown-header">Banner Order</li>
+	                <li><a href="OrderBannerLevel1.html">轮播顺序</a></li>
+                </ul>
+            </li>
+            <li><a href="ShowOnline.html">Online View</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>test</h1>
+        <p>test</p>
+        <p><a class="btn btn-primary btn-lg" id="btn_refresh" role="button">show_predict</a>
+           <a class="btn btn-primary btn-lg" id="btn_logoff" role="button" onclick="window.location='/logout'">test</a>
+           <a class="btn btn-primary btn-lg" id="btn_toOld" role="button" onclick="window.location='/indexOld.html'">test</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2017 CS512</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+
+    <script
+              src="https://code.jquery.com/jquery-1.12.4.min.js"
+              integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+              crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+    <!-- Latest compiled and minified Locales -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+    <script type="text/javascript">
+    	var i_statuindex = 0;
+    	var arrdata = [];
+    	var oTable = null;
+    	var conformTable = null;
+
+	    $(function () {
+	       	//初始化Button的点击事件
+	        var oButtonInit = new ButtonInit();
+	        oButtonInit.Init();
+	    });
+
+	    var ButtonInit = function () {
+	        var oInit = new Object();
+	        oInit.Init = function () {
+	            //初始化页面上面的按钮事件
+
+	        	$("#btn_refresh").click(function () {
+	        		$.ajax({
+	        			  type: 'POST',
+	        			  url: '/backend/get_predict',
+	        			  data: { "a":1,
+                              "term1" : [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90],
+                              "term2" : [90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90],
+                              "formation1" : [4, 4, 2],
+                              "formation2" : [4, 4, 2]},
+	        			  success: function (data) {
+	        				  if(data=="SUCC"){
+	        					  //location.reload(true);
+	        					  alert(data);
+	        					  //success
+	        				  }
+	        				  else{
+	        					  alert(data);
+	        				  }
+	        			  },
+	        			  error:function (data) {
+	        				  alert(data);
+	        			  },
+	        			  dataType: "text"
+	        			});
+	            });
+
+	        	//$("#btn_logoff").click(function () {
+	        		//window.location.href="/logout";
+	            //});
+
+	        };
+
+	        return oInit;
+	    };
+	</script>
+
+  </body>
+</html>
